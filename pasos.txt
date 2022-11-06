@@ -1,0 +1,123 @@
+// DOCKER //
+
+Creamos en docker un contenedor para nuestra BD Backend Rental:
+	docker run -d -p 33660:3306 --name mysql-backend-rental -e MYSQL_ROOT_PASSWORD=root --mount src=mysql-db-data-rental,dst=/var/lib/mysql mysql
+
+Ejecutamos el contenedor con:
+  docker exec -it <nombre_contenedor>
+
+Para añadir credenciales al super user:
+  <nombre_contenedor> -h localhost -u root -p
+  
+Lista de imagenes
+	docker images
+
+Access to mysql server
+	docker exec -it mysql mysql -uroot -proot
+	docker ps
+	docker stop CONTAINER_ID`
+	docker start mysql`
+
+// NODE //
+
+Instalaremos el gestor de paquetes de Node (node packege manager)
+Su manera de trabajar es con package.json
+  npm init
+
+Esto mismo nos creara un archivo package.json una vez contestadas las cuestiones del shell.
+"$ npm init -y" para contestar OK a todo y crear el package por defecto
+
+Instalaremos los paquetes necesarios.
+  npm i sequelize nodemon express mysql mysql2 sequelize-cli
+
+Esto nos creara una carpeta llamada "node_modules" donde estaran todas las librerias.
+Es importante observar que tambien se nos crea un "package.json" dentro de esta carpeta
+con la informacion de cara libreria.
+
+A su vez, se crearan nuevas "dependencias" en nuestro archivo package.json. original.
+
+Otras instrucciones interesantes de NPM
+
+  Para desinstalar paquetes instalados usamos:
+    $ npm uninstall [nombre del paquete ]
+
+  Para actualizar:
+
+  Para actualizar todos los paquetes instalados.
+    $ npm update
+  Para actualizar un paquete determinado.
+    $ npm update [nombre del paquete]
+
+Ahora tendremos que importar estas librerias.
+Los "modulos" se utilizan para llamar/importar otros ficheros ".js"
+
+Para importar dichas librerias, las instanciaremos con el valor de "require('nombre libreria')"
+Y por otra parte, donde deseemos exportar utilizaremos "module.exports"
+
+Otras posibilidades que nos brinda NPM es podes lanzar tareas/scripts desde la ventana shell:
+
+  "scripts": {
+  "start": "node app.js"
+  }
+
+Para definir estos nuevos script debemos modificar el archivo package.json y añadirlo en el apartado scripts:
+
+  "scripts": {
+  "produccion": "node app.js"
+  }
+
+Utilizaremos "$ npm run produccion" para ejecutarlo desde terminal.
+
+// EXPRESS // 
+
+Una vez inicializado el proyecto, crearemos un fichero index.js y cargaremos los objetos en el.
+
+Instanciaremos la constante para llamar al modulo principal de express:
+
+  const express = require('express');
+  const app = express();
+  const PORT = 3000
+
+Instanciaremos el servidor.
+
+  app.listen(3000,()=>console.log('Servidor levantado en 3000'));
+
+Routing con express
+
+  app.get('/',(req, res)=> res.send('Hello World!'));
+
+
+Ahora ejecutamos nuestro servidor con el codigo "$ node index.js"
+
+
+crear listen:
+  app.use(express.json())
+  app.listen(PORT, ()=>{
+    console.log(`servidor conectado ${PORT}`)
+  })
+
+npx sequelize-cli init
+
+npm i dotenv
+
+creamos un fichero db
+
+creamos la tabla con las referencias
+
+creamos modelos
+  npx sequelize-cli model:generate --name cliente --attributes id_cliente:integer,nombre:string,apellidos:string,direccion:string,dni:string,documentacion:text
+
+hacemos las rutas
+  router.js
+
+y asignamos las rutas a las tablas creadas
+
+
+hacemos un get
+  router.get(./., (req,res)=> {
+    models.client.findAll()
+    .then
+  })
+
+lanzamos una migracion
+  npx sequelize-cli db:migrate
