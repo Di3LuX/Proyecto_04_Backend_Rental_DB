@@ -1,12 +1,14 @@
 const { Order } = require("../models/index");
 const { User } = require("../models/index");
 
+// TODO: 
 // const auth = require('../middlewares/auth.js');
 // const isAdmin = require("../middlewares/isAdmin");
 
 const OrdersController = {};
 
 //Endpoint para registrar un nuevo pedido
+
 OrdersController.placeNewOrder = (req, res) => {
 
   let body = req.body;
@@ -37,7 +39,7 @@ OrdersController.getOrdersById = async (req, res) => {
   let consulta = `SELECT movies.title AS title, users.name AS name
     FROM movies INNER JOIN orders
     ON movies.id = orders.movieId INNER JOIN users
-    ON users.id = orders.userId WHERE users.id = ${id};`;//Introducir entre las comillas la consulta hecha pura en SQL
+    ON users.id = orders.userId WHERE users.id = ${id};`;//Introducir la consulta hecha en SQL
   let resultado = await Order.sequelize.query(consulta, { type: Order.sequelize.QueryTypes.SELECT });
   if (resultado) {
     res.send(resultado);
@@ -45,6 +47,7 @@ OrdersController.getOrdersById = async (req, res) => {
 };
 
 // Endpoint para ver todos los pedidos
+
 OrdersController.allOrders = async (req, res) => {
 
   let consulta = `SELECT movies.title AS title, users.name AS name, orders.id AS id, users.id AS userId
@@ -59,6 +62,7 @@ OrdersController.allOrders = async (req, res) => {
 };
 
 // Endpoint para borrar un pedido mediante su id
+
 OrdersController.deleteOrderById = (req, res) => {
   let id = req.params.id;
 
@@ -78,7 +82,9 @@ OrdersController.deleteOrderById = (req, res) => {
     send.error(error);
   }
 };
+
 // Endpoint para borrar todos los pedidos
+
 OrdersController.deleteAll = (req, res) => {
   try {
 
