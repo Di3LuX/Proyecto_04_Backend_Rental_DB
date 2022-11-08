@@ -9,7 +9,7 @@ module.exports = {
         nombre: "admin"
       },
       {
-        id_rol: 2,
+        id_rol: 0,
         nombre: "user"
       }
     ], {});

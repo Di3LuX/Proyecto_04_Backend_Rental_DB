@@ -1,3 +1,9 @@
+// RAILWAY //
+info en .env
+
+wraper
+// MYSQL //
+
 // DOCKER //
 
 Creamos en docker un contenedor para nuestra BD Backend Rental:

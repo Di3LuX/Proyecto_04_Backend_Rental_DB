@@ -1,6 +1,6 @@
 const config = require('./config/config.json');
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
+require('dotenv').config();fa
 
 const sequelize = new Sequelize(
   process.env.MYSQL_DATABASE || config.development.database,
