@@ -3,12 +3,12 @@ const config = require('./config/config.json');
 const dotenv = require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.MYSQL_DATABASE,
-  process.env.MYSQL_USER,
-  process.env.MYSQL_PASSWORD,
+  process.env.DB_DATABASE,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD || "root", 
   {
-    host: process.env.MYSQL_HOST,
-    port: process.env.MYSQL_PORT || '3001',
+    host: process.env.DB_HOST || "127.0.0.1",
+    port: process.env.DB_PORT || '33660',
     dialect: 'mysql',
   }
 );
