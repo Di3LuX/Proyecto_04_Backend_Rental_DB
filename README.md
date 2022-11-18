@@ -1,21 +1,24 @@
 # Proyecto_04_Backend_Rental_DB
-# Express API Sequelize + Mysql + jwt + Rol
+# Express API Sequelize + Mysql + JWT
 
 ## LISTA DE COMANDOS BASICOS:
 
 npm i
+
 npm run dev
+
 npm run start
 
 sequelize model:generate --name user --attributes name:string, password:string, email:string
 
 sequelize db:create
+
 sequelize db:migrate
 
 sequelize db:migrate:undo
-sequelize db:migrate:undo:all
 
 sequelize seed:generate --name demo-user
+
 sequelize db:seed:all
 
 
