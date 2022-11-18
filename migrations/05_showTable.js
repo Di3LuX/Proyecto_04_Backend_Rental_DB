@@ -22,7 +22,7 @@ module.exports = {
       adult: {
         type: Sequelize.BOOLEAN
       },
-      genereId: {
+      genere_Id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Genres',

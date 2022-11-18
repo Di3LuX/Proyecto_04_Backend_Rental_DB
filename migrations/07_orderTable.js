@@ -33,7 +33,7 @@ module.exports = {
       userId: {
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id'
         },
         onUpdate: 'CASCADE',

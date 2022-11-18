@@ -11,7 +11,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      user_Id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -19,7 +19,7 @@ module.exports = {
           key: "id"
         }
       },
-      role_id: {
+      role_Id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class role extends Model {
+  class roles extends Model {
 
     static associate(models) {
       this.hasMany(models.role, {
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'role',
+    modelName: 'roles',
   });
-  return role;
+  return roles;
 };

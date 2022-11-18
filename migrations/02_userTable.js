@@ -18,6 +18,10 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      age: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       mail: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -27,15 +31,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      age: {
-        type: Sequelize.DATEONLY,
-        allowNull: false
-      },
-      id_role: {
+      
+      role_Id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'role',
-          key: 'id_role'
+          model: 'roles',
+          key: 'id'
         },
         onDelete: 'cascade',
         onUpdate: 'cascade'

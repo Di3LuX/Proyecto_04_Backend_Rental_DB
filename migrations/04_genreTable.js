@@ -10,7 +10,10 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      type: {
+        type: Sequelize.STRING
+      },
+      age: {
         type: Sequelize.STRING
       },
       createdAt: {
