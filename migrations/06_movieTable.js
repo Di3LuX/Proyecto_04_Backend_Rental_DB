@@ -1,4 +1,5 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -21,8 +22,14 @@ module.exports = {
       adult: {
         type: Sequelize.BOOLEAN
       },
-      genere: {
-        type: Sequelize.STRING
+      genereId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Genres',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       premiere: {
         type: Sequelize.BOOLEAN

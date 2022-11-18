@@ -1,16 +1,20 @@
+const { Sequelize, DataTypes } = require('sequelize');
 const config = require('./config/config.json');
-const { Sequelize } = require('sequelize');
-require('dotenv').config();fa
+const dotenv = require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.MYSQL_DATABASE || config.development.database,
-  process.env.MYSQL_USER || config.development.username,
-  process.env.MYSQL_PASSWORD || config.development.password,
+  process.env.MYSQL_DATABASE,
+  process.env.MYSQL_USER,
+  process.env.MYSQL_PASSWORD,
   {
-    host: process.env.MYSQL_HOST || config.development.host,
-    port: process.env.MYSQL_PORT || config.development.port || '3000',
-    dialect: process.env.DB_DIALECT
+    host: process.env.MYSQL_HOST,
+    port: process.env.MYSQL_PORT || '3001',
+    dialect: 'mysql',
   }
 );
 
-module.exports = sequelize;
+module.exports = sequelize.authenticate()
+  .then((db) => {
+    console.log('MYSQL connected');
+    return db;
+  });

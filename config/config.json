@@ -1,10 +1,24 @@
 {
   "development": {
-      "username": "root",
-      "password": null,
-      "database": "mysql-backend-rental",
-      "host": "localhost",
-      "dialect": "mysql",
-      "port": "3000"
+    "username": "root",
+    "password": null,
+    "database": "railway",
+    "host": "containers-us-west-85.railway.app",
+    "dialect": "mysql",
+    "port": "3001"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
 }

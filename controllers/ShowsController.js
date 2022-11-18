@@ -3,13 +3,6 @@ const { Show } = require('../models/index');
 const { Op } = require("sequelize");
 const res = require('express/lib/response');
 
-// API_KEY necessary for TMDB endpoints
-// const API_KEY = "210d6a5dd3f16419ce349c9f1b200d6d";
-
-// Random number between two limits function
-// const minMaxRoundedRandom = (min, max) => {
-//     return Math.round(Math.random() * (max - min) + min);
-// }
 
 const ShowsController = {};
 

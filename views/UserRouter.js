@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const auth = require('../middlewares/auth.js');
+
 
 const UserController = require("../controllers/UserController");
 
 
 //Ver todos los usuarios
-router.get("/", auth, isAdmin, UserController.getUsers);
+router.get("/", auth, admin, UserController.getUsers);
 
 //Buscar usuario por ID
 router.get("/:id", auth, UserController.getUserId);
@@ -23,10 +25,10 @@ router.post("/login", UserController.loginUser);
 router.put("/newpassword", auth, UserController.updatePassword);
 
 //Borrar usuarios
-router.delete("/", auth, isAdmin,  UserController.deleteAll);
+router.delete("/", auth, admin,  UserController.deleteAll);
 
 //Borrar usuario mediante su id
-router.delete("/delete/:id",auth,  isAdmin,  UserController.deleteById);
+router.delete("/delete/:id",auth,  admin,  UserController.deleteById);
 
 //Actualiza datos de usuarios en la DB
 router.put('/:id', auth, UserController.updateProfile);

@@ -1,6 +1,8 @@
 
 const { User } = require("../models/index");
 const { Op } = require("sequelize");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
 
 const UserController = {};
@@ -72,99 +74,90 @@ UserController.registerUser = async (req, res) => {
   });
 };
 
-// //Endpoint para loguearse 
-// UserController.loginUser = (req, res) => {
+//Endpoint para loguearse 
+UserController.loginUser = (req, res) => {
 
-//   let email = req.body.email;
-//   let password = req.body.password;
+  let email = req.body.email;
+  let password = req.body.password;
 
-//   User.findOne({
-//     where: { email: email }
-//   })
-//     .then(User => {
+  User.findOne({
+    where: { email: email }
+  })
+    .then(User => {
 
-//       if (!User) {
-//         res.send("Usuario o contraseña inválido");
-//       } else {
-//         //el usuario existe, por lo tanto, vamos a comprobar
-//         //si el password es correcto
+      if (!User) {
+        res.send("Usuario o contraseña inválido");
+      } else {
 
-//         if (bcrypt.compareSync(password, User.password)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
+        if (bcrypt.compareSync(password, User.password)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
 
 
-//           let token = jwt.sign({ user: User }, authConfig.secret, {
-//             expiresIn: authConfig.expires
-//           });
+          let token = jwt.sign({ user: User }, authConfig.secret, {
+            expiresIn: authConfig.expires
+          });
 
-//           res.json({
-//             user: User,
-//             token: token
-//           })
+          res.json({
+            user: User,
+            token: token
+          })
 
-//         } else {
-//           res.status(401).json({ msg: "Usuario o contraseña inválidos" });
-//         }
-//       };
+        } else {
+          res.status(401).json({ msg: "Usuario o contraseña inválidos" });
+        }
+      };
 
+    }).catch(error => {
+      res.send(error);
+    })
+};
 
-//     }).catch(error => {
-//       res.send(error);
-//     })
-// };
+//Endpoint para modificar la contraseña
+UserController.updatePassword = (req, res) => {
 
-// //Endpoint para modificar la contraseña
-// UserController.updatePassword = (req, res) => {
+  let id = req.body.id;
 
-//   let id = req.body.id;
+  let oldPassword = req.body.oldPassword;
 
-//   let oldPassword = req.body.oldPassword;
+  let newPassword = req.body.newPassword;
 
-//   let newPassword = req.body.newPassword;
+  User.findOne({
+    where: { id: id }
+  }).then(userFound => {
 
-//   User.findOne({
-//     where: { id: id }
-//   }).then(userFound => {
+    if (userFound) {
 
-//     if (userFound) {
+      if (bcrypt.compareSync(oldPassword, userFound.password)) {
 
-//       if (bcrypt.compareSync(oldPassword, userFound.password)) {
+        newPassword = bcrypt.hashSync(newPassword, Number.parseInt(authConfig.rounds));
 
-//         //En caso de que el Password antiguo SI sea el correcto....
+        let data = {
+          password: newPassword
+        }
 
-//         //1er paso..encriptamos el nuevo password....
+        User.update(data, {
+          where: { id: id }
+        })
+          .then(updated => {
+            res.send(updated);
+          })
+          .catch((error) => {
+            res.status(401).json({ msg: `Ha ocurrido un error actualizando el password` });
+          });
 
-//         newPassword = bcrypt.hashSync(newPassword, Number.parseInt(authConfig.rounds));
-
-//         //2do paso guardamos el nuevo password en la base de datos
-
-//         let data = {
-//           password: newPassword
-//         }
-
-//         User.update(data, {
-//           where: { id: id }
-//         })
-//           .then(updated => {
-//             res.send(updated);
-//           })
-//           .catch((error) => {
-//             res.status(401).json({ msg: `Ha ocurrido un error actualizando el password` });
-//           });
-
-//       } else {
-//         res.status(401).json({ msg: "Usuario o contraseña inválidos" });
-//       }
+      } else {
+        res.status(401).json({ msg: "Usuario o contraseña inválidos" });
+      }
 
 
-//     } else {
-//       res.send(`Usuario no encontrado`);
-//     }
+    } else {
+      res.send(`Usuario no encontrado`);
+    }
 
-//   }).catch((error => {
-//     res.send(error);
-//   }));
+  }).catch((error => {
+    res.send(error);
+  }));
 
-// };
+};
 
 //Endpoint para buscar un usuario mediante un id
 UserController.getUserId = (req, res) => {

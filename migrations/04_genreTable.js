@@ -1,31 +1,17 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Shows', {
+    await queryInterface.createTable('Genres', {
       id: {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      title: {
+      name: {
         type: Sequelize.STRING
-      },
-      rate: {
-        type: Sequelize.INTEGER
-      },
-      synopsis: {
-        type: Sequelize.TEXT
-      },
-      adult: {
-        type: Sequelize.BOOLEAN
-      },
-      genere: {
-        type: Sequelize.STRING
-      },
-      premiere: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +24,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Shows');
+    await queryInterface.dropTable('Genres');
   }
 };

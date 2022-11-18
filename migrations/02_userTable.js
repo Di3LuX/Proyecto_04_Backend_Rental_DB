@@ -1,8 +1,9 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -30,9 +31,14 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false
       },
-      rol: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      id_role: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'role',
+          key: 'id_role'
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -45,6 +51,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };

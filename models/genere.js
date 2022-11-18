@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  
+
   Genre.init({
     name: DataTypes.STRING
   }, {

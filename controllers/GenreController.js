@@ -1,10 +1,14 @@
 const { send } = require('express/lib/response');
 const { Genre } = require('../models/index');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth');
+
 
 const GenreController = {};
 
 
-// Endpoint para buscar generos:
+//Endpoint para buscar peliculas por genero
 GenreController.getAllGenres = (req, res) => {
   Genre.findAll()
     .then(data => {
@@ -12,7 +16,7 @@ GenreController.getAllGenres = (req, res) => {
     })
 };
 
-// Endpoint para registrar un nuevo genero:
+//Endpoint para registrar un nuevo genero
 GenreController.registerGenre = (req, res) => {
 
   let body = req.body;
@@ -24,7 +28,7 @@ GenreController.registerGenre = (req, res) => {
       if (genre) {
         res.send(genre)
       } else {
-        res.send("Error a la hora de introducir el nuevo genero");
+        res.send("Fallo al introducir genero en la base de datos");
       }
     })
     .catch((error => {
@@ -32,7 +36,7 @@ GenreController.registerGenre = (req, res) => {
     }))
 };
 
-// Endpoint para borrar un genero por su id:
+//Endpoint para borrar un genero mediante su id
 GenreController.deleteGenre = (req, res) => {
   let id = req.params.id;
 
@@ -44,7 +48,7 @@ GenreController.deleteGenre = (req, res) => {
 
       .then(genreDeleted => {
         console.log(genreDeleted);
-        res.send(`El genero con la id ${id} fue eliminado`);
+        res.send(`El genero con la id ${id} ha sido eliminado`);
       })
   }
   catch (error) {
@@ -52,7 +56,7 @@ GenreController.deleteGenre = (req, res) => {
   }
 };
 
-// Endpoint para borrar todos los generos:
+//Endpoint para borrar todos los generos
 GenreController.deleteAll = (req, res) => {
   try {
 
@@ -61,12 +65,14 @@ GenreController.deleteAll = (req, res) => {
       truncate: false
     })
       .then(genre => {
-        res.send(`Se han eliminado los generos de ${genre}`);
+        res.send(`Se han eliminado ${genre} generos`);
       })
 
   } catch (error) {
     res.send(error);
   }
 };
+
+
 
 module.exports = GenreController;

@@ -1,9 +1,8 @@
 const { Order } = require("../models/index");
 const { User } = require("../models/index");
 
-// TODO: 
-// const auth = require('../middlewares/auth.js');
-// const isAdmin = require("../middlewares/isAdmin");
+const auth = require('../middlewares/auth.js');
+const admin = require("../middlewares/admin.js");
 
 const OrdersController = {};
 
@@ -39,7 +38,7 @@ OrdersController.getOrdersById = async (req, res) => {
   let consulta = `SELECT movies.title AS title, users.name AS name
     FROM movies INNER JOIN orders
     ON movies.id = orders.movieId INNER JOIN users
-    ON users.id = orders.userId WHERE users.id = ${id};`;//Introducir la consulta hecha en SQL
+    ON users.id = orders.userId WHERE users.id = ${id};`;
   let resultado = await Order.sequelize.query(consulta, { type: Order.sequelize.QueryTypes.SELECT });
   if (resultado) {
     res.send(resultado);
