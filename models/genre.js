@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       this.hasMany(models.Genre, {
-        foreignKey: 'genreId'
+        foreignKey: 'genre_id'
       });
     }
   }

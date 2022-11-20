@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
 
       this.hasMany(models.Order, {
-        foreignKey: 'showId'
+        foreignKey: 'show_id'
       });
       this.hasMany(models.Genre, {
-        foreignKey: 'genreId'
+        foreignKey: 'genr_id'
       });
     }
   }

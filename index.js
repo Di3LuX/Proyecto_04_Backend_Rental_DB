@@ -25,6 +25,6 @@ app.use(router);
 
 db.then(() => {
 
-	app.listen(PORT, () => console.log(`Servidor en el puerto: ${PORT}`.bgCyan.black));
+	app.listen(PORT, () => console.log(`Servidor en el puerto: ${PORT}`.rainbow));
 })
 	.catch((err) => console.log(err.message));   

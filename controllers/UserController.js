@@ -7,7 +7,6 @@ const authConfig = require('../config/auth');
 
 const UserController = {};
 
-//Funciones del controlador
 
 // Endpoint para ver todos los usuarios
 UserController.getUsers = (req, res) => {
@@ -25,7 +24,6 @@ UserController.registerUser = async (req, res) => {
   let email = req.body.email;
   let pass = req.body.pass;
   let age = req.body.age;
-  let rol = req.body.rol;
 
 
   //Guardamos en sequelize usuarios
@@ -58,7 +56,6 @@ UserController.registerUser = async (req, res) => {
         email: email,
         pass: pass,
         age: age,
-        rol: rol,
       }).then(user => {
         res.send(`${user.name}, es un placer tenerte entre nosotros`);
       })
@@ -89,7 +86,7 @@ UserController.loginUser = (req, res) => {
         res.send("Usuario o contraseña inválido");
       } else {
 
-        if (bcrypt.compareSync(password, User.password)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
+        if (bcrypt.compareSync(password, User.password)) {
 
 
           let token = jwt.sign({ user: User }, authConfig.secret, {

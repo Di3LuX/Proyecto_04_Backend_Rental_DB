@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       this.hasMany(models.Order, {
-        foreignKey: 'userId'
+        foreignKey: 'user_id'
       });
-      this.hasMany(models.role, {
-        foreignKey: 'id_role'
+      this.hasMany(models.Role, {
+        foreignKey: 'role_id'
       });
     }
   }
@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER,
     email: DataTypes.STRING,
     pass: DataTypes.STRING,
-    role: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'User',

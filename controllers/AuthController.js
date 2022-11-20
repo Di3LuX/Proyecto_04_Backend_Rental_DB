@@ -25,7 +25,7 @@ AuthController.signIn = (req, res) => {
           token: token
         })
       } else {
-        // Unauthorized Access
+        // Acceso no autorizado.
         res.status(401).json({ msg: "Contraseña incorrecta" })
       }
     }
@@ -34,10 +34,6 @@ AuthController.signIn = (req, res) => {
   })
 };
 
-
-//-------------------------------------------------------------------------------------
-//REGISTER new user in database
-//create user
 AuthController.signUp = (req, res) => {
 
   // Encriptamos la contraseña

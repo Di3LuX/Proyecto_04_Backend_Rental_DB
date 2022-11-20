@@ -8,21 +8,21 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       this.belongsTo(models.Movie, {
-        foreignKey: "movieId"
+        foreignKey: "movie_id"
       });
       this.belongsTo(models.Show, {
-        foreignKey: "showId"
+        foreignKey: "show_id"
       });
       this.belongsTo(models.User, {
-        foreignKey: 'userId'
+        foreignKey: 'user_id'
       });
     }
   }
 
   Order.init({
-    movieId: DataTypes.INTEGER,
-    showId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
+    movie_id: DataTypes.INTEGER,
+    show_id: DataTypes.INTEGER,
+    user_id: DataTypes.INTEGER,
     rentingDate: DataTypes.DATE,
     returnDate:DataTypes.DATE
   }, {

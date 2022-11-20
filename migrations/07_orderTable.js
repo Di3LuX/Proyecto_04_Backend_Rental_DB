@@ -10,7 +10,7 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      movieId: {
+      movie_id: {
         allowNull: false,
         references: {
           model: 'Movies',
@@ -20,7 +20,7 @@ module.exports = {
         onDelete: 'CASCADE',
         type: Sequelize.INTEGER
       },
-      showId: {
+      show_id: {
         allowNull: false,
         references: {
           model: 'Shows',
@@ -30,10 +30,10 @@ module.exports = {
         onDelete: 'CASCADE',
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         allowNull: false,
         references: {
-          model: 'users',
+          model: 'Users',
           key: 'id'
         },
         onUpdate: 'CASCADE',

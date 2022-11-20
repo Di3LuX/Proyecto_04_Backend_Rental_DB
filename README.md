@@ -44,15 +44,15 @@ DELETE - localhost:3000/movies
 DELETE - localhost:3000/movies:id
 
 #### Series
-GET - localhost:3000/show
-GET - localhost:3000/show/:id
-GET - localhost:3000/show/name/:title
-POST - localhost:3000/show
-PUT - localhost:3000/show:id
-DELETE - localhost:3000/show
-DELETE - localhost:3000/show:id
+GET - localhost:3000/shows
+GET - localhost:3000/shows/:id
+GET - localhost:3000/shows/name/:title
+POST - localhost:3000/shows
+PUT - localhost:3000/shows:id
+DELETE - localhost:3000/shows
+DELETE - localhost:3000/shows:id
 
-#### Genre
+#### Genero
 GET - localhost:3000/genres
 GET - localhost:3000/genres/:id
 GET - localhost:3000/genres/name/:title
@@ -60,4 +60,13 @@ POST - localhost:3000/genres
 PUT - localhost:3000/genres:id
 DELETE - localhost:3000/genres
 DELETE - localhost:3000/genres:id
+
+#### Usuarios
+GET - localhost:3000/users
+GET - localhost:3000/users/:id
+GET - localhost:3000/users/name/:title
+POST - localhost:3000/users
+PUT - localhost:3000/users:id
+DELETE - localhost:3000/users
+DELETE - localhost:3000/users:id
 
