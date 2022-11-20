@@ -19,7 +19,7 @@ Descargaremos los paquetes de:
   winston
  
 -------------------------------------------------------------------------------------------------------
-## LISTA DE COMANDOS BASICOS ##
+## LISTA DE COMANDOS BASICOS
 
 
 #### INSTALAMOS TODAS LAS DEPENDENCIAS CON EL GESTOR DE PAQUETES (Node Package Manager)
@@ -46,19 +46,19 @@ sequelize db:migrate:undo
 #### GENERAMOS LOS DATOS QUE IRAN DENTRO DE LAS TABLAS DE NUESTRA DB
 sequelize db:seed:all
 
-## USUARIOS ##
+#### USUARIOS 
 ![Sin título4](https://user-images.githubusercontent.com/109986640/202918850-720fbc66-e7da-4ee8-b6c9-def022875df2.png)
 
-## GENEROS ##
+#### GENEROS 
 ![Sin título2](https://user-images.githubusercontent.com/109986640/202918840-52244494-1754-4feb-a2ec-140cf436bb33.png)
 
-## PELIS ##
+#### PELIS 
 ![Sin título3](https://user-images.githubusercontent.com/109986640/202918889-b6bab092-c0f7-498d-bf81-b9800a039224.png)
 
 
 -------------------------------------------------------------------------------------------------------
 
-## ENDPOINTS CREADOS ##
+## ENDPOINTS CREADOS 
 
 
 #### Register:
@@ -73,42 +73,70 @@ GET - localhost:3000
 #### Peliculas
 
 GET - localhost:3000/movies
+
 GET - localhost:3000/movies/:id
+
 GET - localhost:3000/movies/name/:title
+
 POST - localhost:3000/movies
+
 PUT - localhost:3000/movies:id
+
 DELETE - localhost:3000/movies
+
 DELETE - localhost:3000/movies:id
+
 
 #### Series
 
 GET - localhost:3000/shows
+
 GET - localhost:3000/shows/:id
+
 GET - localhost:3000/shows/name/:title
+
 POST - localhost:3000/shows
+
 PUT - localhost:3000/shows:id
+
 DELETE - localhost:3000/shows
+
 DELETE - localhost:3000/shows:id
+
 
 #### Genero
 
 GET - localhost:3000/genres
+
 GET - localhost:3000/genres/:id
+
 GET - localhost:3000/genres/name/:title
+
 POST - localhost:3000/genres
+
 PUT - localhost:3000/genres:id
+
 DELETE - localhost:3000/genres
+
 DELETE - localhost:3000/genres:id
+
 
 #### Usuarios
 
 GET - localhost:3000/users
+
 GET - localhost:3000/users/:id
+
 GET - localhost:3000/users/name/:title
+
 POST - localhost:3000/users
+
 PUT - localhost:3000/users:id
+
 DELETE - localhost:3000/users
+
 DELETE - localhost:3000/users:id
+
 
 -------------------------------------------------------------------------------------------------------
 
