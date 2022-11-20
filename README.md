@@ -70,7 +70,8 @@ POST - localhost:3000/api/signin - { "email": "root@email.com",  "password": "pa
 #### Home:
 GET - localhost:3000
 
-#### Peliculas:
+#### Peliculas
+
 GET - localhost:3000/movies
 GET - localhost:3000/movies/:id
 GET - localhost:3000/movies/name/:title
@@ -79,7 +80,8 @@ PUT - localhost:3000/movies:id
 DELETE - localhost:3000/movies
 DELETE - localhost:3000/movies:id
 
-#### Series:
+#### Series
+
 GET - localhost:3000/shows
 GET - localhost:3000/shows/:id
 GET - localhost:3000/shows/name/:title
@@ -88,7 +90,8 @@ PUT - localhost:3000/shows:id
 DELETE - localhost:3000/shows
 DELETE - localhost:3000/shows:id
 
-#### Genero:
+#### Genero
+
 GET - localhost:3000/genres
 GET - localhost:3000/genres/:id
 GET - localhost:3000/genres/name/:title
@@ -98,6 +101,7 @@ DELETE - localhost:3000/genres
 DELETE - localhost:3000/genres:id
 
 #### Usuarios
+
 GET - localhost:3000/users
 GET - localhost:3000/users/:id
 GET - localhost:3000/users/name/:title
@@ -108,4 +112,4 @@ DELETE - localhost:3000/users:id
 
 -------------------------------------------------------------------------------------------------------
 
-Agradezco a Jose
+Agradezco a Jose Marín y a David Ochando por la ayuda y los repositorios de información donados para este proyecto.
