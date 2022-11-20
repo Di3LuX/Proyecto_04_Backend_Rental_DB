@@ -29,11 +29,15 @@ npm i
 npm run dev
 
 #### CREAMOS LA BASE DE DATOS
+
 sequelize db:create
+
 ![Sin título](https://user-images.githubusercontent.com/109986640/202918812-132861b1-bdf5-4c23-8d3b-d8bff6ebc34e.png)
 
 #### MIGRAMOS LAS TABLAS A NUESTRA BASE DE DATOS
+
 sequelize db:migrate
+
 ![Sin título1](https://user-images.githubusercontent.com/109986640/202918827-728ae7f1-0cb6-43f0-8173-4c73e4570871.png)
 
 #### DESHACEMOS LA MIGRACION
