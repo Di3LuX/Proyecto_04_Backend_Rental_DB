@@ -5,17 +5,29 @@ Crearemos el backend de una aplicacion de alquiler de peliculas y series.
 
 Utilizaremos las tecnologias de Node con Express junto con Sequelize.
 Descargaremos los paquetes de:
+
   axios
+  
   bcrypt
+  
   colors
+  
   cors
+  
   dotenv
+  
   express
+  
   jsonwebtoken
+  
   morgan
+  
   mysql2
+  
   nodemon
+  
   sequelize y sequelize-cli
+  
   winston
  
 -------------------------------------------------------------------------------------------------------
