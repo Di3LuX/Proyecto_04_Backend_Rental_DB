@@ -20,11 +20,10 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(express.json());
 app.use(cors(corsOptions));
 
-app.get('/', (req, res) => { res.send('Espero que tengas un buen dia!'); });
 app.use(router);
 
 db.then(() => {
 
-	app.listen(PORT, () => console.log(`Servidor en el puerto: ${PORT}`.rainbow));
+	app.listen(PORT, () => console.log(`Servidor en el puerto: ${PORT}. Espero que tengas un buen dia!`.rainbow));
 })
 	.catch((err) => console.log(err.message));   
