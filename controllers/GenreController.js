@@ -9,7 +9,7 @@ const GenreController = {};
 
 
 //Endpoint para buscar peliculas por genero
-GenreController.getAllGenres = (req, res) => {
+GenreController.getAll = (req, res) => {
   Genre.findAll()
     .then(data => {
       res.send(data)

@@ -1,22 +1,23 @@
 const express = require("express");
 const router = express.Router();
+const { authBearerMiddleware, isAdmin } = require("../middlewares/auth.middleware")
 
 const OrdersController = require("../controllers/OrdersController");
 
 //Endpoint para registrar un nuevo pedido
-router.post("/", OrdersController.placeNewOrder);
+router.post("/", authBearerMiddleware, isAdmin, OrdersController.placeNewOrder);
 
 //Endpoint para ver todos los pedidos
-router.get("/", OrdersController.allOrders);
+router.get("/", authBearerMiddleware, isAdmin, OrdersController.allOrders);
 
 //Endpoint para ver pedidos por idUser
-router.get("/usuario/:id", OrdersController.getOrdersById);
+router.get("/usuario/:id", authBearerMiddleware, isAdmin, OrdersController.getOrdersById);
 
 //ENdpoint para borrar un pedido mediante su id
-router.delete("/:id", OrdersController.deleteOrderById);
+router.delete("/:id", authBearerMiddleware, isAdmin, OrdersController.deleteOrderById);
 
 //Endpoint para borrar todos los pedidos
-router.delete("/deleteAll/:id", OrdersController.deleteAll);
+router.delete("/deleteAll/:id", authBearerMiddleware, isAdmin, OrdersController.deleteAll);
 
 
 module.exports = router;

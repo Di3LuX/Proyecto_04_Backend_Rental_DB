@@ -14,22 +14,36 @@ ShowsController.getAll = (req, res) => {
     })
 };
 
-// Endpoint para buscar películas por id:
-ShowsController.getShowById = (req, res) => {
-  Show.findByPk(req.params.id)
-    .then(data => {
-      res.send(data)
-    })
+// Endpoint para buscar series por id:
+ShowsController.getShowById = async (req, res) => {
+  try {
+    let { id } = req.params;
+    let resp = await models.Shows.findAll({
+      where: {
+        show_id: id,
+      },
+    });
+    res.send(resp);
+  } catch (error) {
+    res.send(error);
+  }
 };
 
 // Endpoint para buscar serie por titulo:
-ShowsController.getShowByTitle = async (req, res) => {
-  let title = req.params.title;
-  let resultado = await Show.sequelize.query(consulta, { type: Show.sequelize.QueryTypes.SELECT });
-  if (resultado) {
-    res.send(resultado);
+ShowsController.getShowByTitle = async (req,res) =>{
+  try {
+    let { title } = req.params;
+    let resp = await models.Shows.findAll({
+      where: {
+        title: title
+      }
+    }
+    );
+    res.send(resp);
+  } catch (error) {
+    res.send(error);
   }
-};
+}
 
 //Endpoint para registrar una nueva serie
 ShowsController.registerShow = (req, res) => {

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const auth = require('./middlewares/auth');
+const { authBearerMiddleware, isValidRoleAdmin } = require("./middlewares/auth.middleware")
 
 const UserRouter = require ("./views/UserRouter");
 const MoviesRouter = require("./views/MoviesRouter");

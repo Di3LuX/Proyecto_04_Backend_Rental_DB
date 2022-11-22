@@ -1,9 +1,6 @@
 const { Order } = require("../models/index");
 const { User } = require("../models/index");
 
-const auth = require('../middlewares/auth.js');
-const admin = require("../middlewares/admin.js");
-
 const OrdersController = {};
 
 //Endpoint para registrar un nuevo pedido

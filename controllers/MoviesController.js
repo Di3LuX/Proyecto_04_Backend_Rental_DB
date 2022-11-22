@@ -16,22 +16,35 @@ MoviesController.getAll = (req, res) => {
 };
 
 // Endpoint para buscar películas por id:
-MoviesController.getMovieById = (req, res) => {
-  Movie.findByPk(req.params.id)
-    .then(data => {
-      res.send(data)
-    })
-};
-
-// Endpoint para buscar pelicula por titulo:
-MoviesController.getMovieByTitle = async (req, res) => {
-  let title = req.params.title;
-  let resultado = await Movie.sequelize.query(consulta, { type: Movie.sequelize.QueryTypes.SELECT });
-  if (resultado) {
-    res.send(resultado);
+MoviesController.getMovieById = async (req, res) => {
+  try {
+    let { id } = req.params;
+    let resp = await models.Movies.findAll({
+      where: {
+        movie_id: id,
+      },
+    });
+    res.send(resp);
+  } catch (error) {
+    res.send(error);
   }
 };
 
+// Endpoint para buscar pelicula por titulo:
+MoviesController.getMovieByTitle = async (req,res) =>{
+  try {
+    let { title } = req.params;
+    let resp = await models.Movies.findAll({
+      where: {
+        title: title
+      }
+    }
+    );
+    res.send(resp);
+  } catch (error) {
+    res.send(error);
+  }
+}
 //Endpoint para registrar una nueva pelicula
 MoviesController.registerMovie = (req, res) => {
   let title = req.body.title;

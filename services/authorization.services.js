@@ -70,7 +70,7 @@ const encryptPassword = (password) => {
 };
 
 // Nos aseguramos que el email y el pass son validos
-const isValidUserAndPassword = async (email, pass) => {
+const validUserPass = async (email, pass) => {
   const userFound = await models.user.findOne({ email: email });
   if (userFound) {
     const hash = encryptPassword(pass);

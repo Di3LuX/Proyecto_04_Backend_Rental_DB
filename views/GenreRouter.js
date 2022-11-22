@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const auth = require('../middlewares/auth');
+const { authBearerMiddleware, isAdmin } = require("../middlewares/auth.middleware")
 
 
 const GenreController = require("../controllers/GenreController");
 
 //Endpoint para ver todos los generos
-router.get("/", GenreController.getAllGenres);
+router.get("/", GenreController.getAll);
 
 //Endpoint para registrar un nuevo genero
-router.post("/", GenreController.registerGenre);
+router.post("/", authBearerMiddleware, isAdmin, GenreController.registerGenre);
 
 //Endpoint para borrar un genero mediante su id
-router.delete("/:id", GenreController.deleteGenre);
+router.delete("/:id", authBearerMiddleware, isAdmin, GenreController.deleteGenre);
 
 //Endpoint para borrar todos los generos
-router.delete("/", auth, GenreController.deleteAll);
+router.delete("/", authBearerMiddleware, isAdmin, GenreController.deleteAll);
 
 
 module.exports = router;

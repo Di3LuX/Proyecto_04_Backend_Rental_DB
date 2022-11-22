@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { authBearerMiddleware, isAdmin } = require("../middlewares/auth.middleware")
 
 const MoviesController = require("../controllers/MoviesController");
 
@@ -7,18 +8,18 @@ const MoviesController = require("../controllers/MoviesController");
 router.get("/", MoviesController.getAll);
 
 //Endpoint para buscar películas por id 
-router.get("/id/:id", MoviesController.getMovieById);
+router.get("/id/:id", authBearerMiddleware, MoviesController.getMovieById);
 
 //Endpoint para buscar pelicula por titulo
-router.get("/title/:title", MoviesController.getMovieByTitle);
+router.get("/title/:title", authBearerMiddleware, MoviesController.getMovieByTitle);
 
 //Endpoint para registrar nueva pelicula
-router.post("/", MoviesController.registerMovie);
+router.post("/", authBearerMiddleware, isAdmin, MoviesController.registerMovie);
 
 //Endpoint para borrar una pelicula
-router.delete("/:id", MoviesController.deleteById);
+router.delete("/:id", authBearerMiddleware, isAdmin, MoviesController.deleteById);
 
 //Endpoint para borrar todas las peliculas
-router.delete("/", MoviesController.deleteAll);
+router.delete("/", authBearerMiddleware, isAdmin, MoviesController.deleteAll);
 
 module.exports = router;
