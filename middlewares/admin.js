@@ -12,11 +12,11 @@ module.exports = (req, res, next) => {
     if (user.role) {
       next();
     } else {
-      res.status(403).send({ msg: `User is not allowed.` });
+      res.status(403).send({ msg: `Eh! No estas autorizado!` });
     }
   } catch (error) {
     res.status(400).json({
-      msg: `Something bad happened, try to check the infos you put and try again.`,
+      msg: `Algo pasó`,
       error: error
     });
   }
