@@ -1,5 +1,6 @@
 const { send } = require('express/lib/response');
 const { Genre } = require('../models/index');
+const { Op } = require("sequelize");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
