@@ -1,15 +1,12 @@
 const { send } = require('express/lib/response');
 const { Genre } = require('../models/index');
 const { Op } = require("sequelize");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth');
 
 
 const GenreController = {};
 
 
-//Endpoint para buscar peliculas por genero
+//Endpoint para buscar generos
 GenreController.getAll = (req, res) => {
   Genre.findAll()
     .then(data => {
@@ -23,7 +20,7 @@ GenreController.registerGenre = (req, res) => {
   let body = req.body;
 
   Genre.create({
-    name: body.name
+    title: body.title
   })
     .then(genre => {
       if (genre) {

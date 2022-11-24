@@ -1,8 +1,6 @@
 const { send } = require('express/lib/response');
 const { Movie } = require('../models/index');
 const { Op } = require("sequelize");
-const axios= require("axios");
-const res = require('express/lib/response');
 
 
 const MoviesController = {};
@@ -19,30 +17,31 @@ MoviesController.getAll = (req, res) => {
 MoviesController.getMovieById = async (req, res) => {
   try {
     let { id } = req.params;
-    let resp = await models.Movies.findAll({
+    let resp = await Movie.findOne({
       where: {
-        movie_id: id,
+        id: id,
       },
     });
-    res.send(resp);
+    res.status(200).send(resp);
   } catch (error) {
-    res.send(error);
+    console.error (error)
+    res.status(500).send(error);
   }
 };
 
 // Endpoint para buscar pelicula por titulo:
-MoviesController.getMovieByTitle = async (req,res) =>{
+MoviesController.getMovieByTitle = async (req, res) => {
   try {
     let { title } = req.params;
-    let resp = await models.Movies.findAll({
-      where: {
-        title: title
-      }
+    let resp = await Movie.findOne({ 
+    where: { 
+      title: title,
     }
-    );
-    res.send(resp);
+  });
+  res.status(200).send(resp);
   } catch (error) {
-    res.send(error);
+    console.error (error)
+    res.status(500).send(error);
   }
 }
 //Endpoint para registrar una nueva pelicula

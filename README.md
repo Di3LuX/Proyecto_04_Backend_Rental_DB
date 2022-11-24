@@ -74,10 +74,10 @@ sequelize db:seed:all
 
 
 #### Register:
-POST - localhost:3000/api/signup - { "name": "root", "email": "root@email.com",  "password": "password" }
+POST - localhost:3000/user/register - { "name": "Nombre", "username": "NombreUsuario",  "age": "Edad", "mail": "E-Mail", "pass": "Contraseña", }
 
 #### Login:
-POST - localhost:3000/api/signin - { "email": "root@email.com",  "password": "password" }
+POST - localhost:3000/user/login - { "Email": "Email de usuario",  "pass": "Contraseña de usuario" }
 
 #### Home:
 GET - localhost:3000

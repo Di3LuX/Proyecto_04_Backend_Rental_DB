@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "4WFbrFo6FfFHW3sUazUz",
-    "database": "railway",
-    "host": "containers-us-west-128.railway.app",
+    "password": "root",
+    "database": "MovieRentalDB",
+    "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "7692"
+    "port": "3306"
   },
   "test": {
     "username": "root",

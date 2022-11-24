@@ -8,10 +8,10 @@ const ShowsController = require("../controllers/ShowsController");
 router.get("/", ShowsController.getAll);
 
 //Endpoint para buscar películas por id 
-router.get("/id/:id", authBearerMiddleware, ShowsController.getShowById);
+router.get("/id/:id", ShowsController.getShowById);
 
 //Endpoint para buscar pelicula por titulo
-router.get("/title/:title", authBearerMiddleware, ShowsController.getShowByTitle);
+router.get("/title/:title", ShowsController.getShowByTitle);
 
 //Endpoint para registrar nueva pelicula
 router.post("/", authBearerMiddleware, isAdmin, ShowsController.registerShow);

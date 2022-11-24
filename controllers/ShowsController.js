@@ -18,30 +18,31 @@ ShowsController.getAll = (req, res) => {
 ShowsController.getShowById = async (req, res) => {
   try {
     let { id } = req.params;
-    let resp = await models.Shows.findAll({
+    let resp = await Show.findOne({
       where: {
-        show_id: id,
+        id: id,
       },
     });
-    res.send(resp);
+    res.status(200).send(resp);
   } catch (error) {
-    res.send(error);
+    console.error (error)
+    res.status(500).send(error);
   }
 };
 
 // Endpoint para buscar serie por titulo:
-ShowsController.getShowByTitle = async (req,res) =>{
+ShowsController.getShowByTitle = async (req, res) => {
   try {
     let { title } = req.params;
-    let resp = await models.Shows.findAll({
-      where: {
-        title: title
-      }
+    let resp = await Show.findOne({ 
+    where: { 
+      title: title,
     }
-    );
-    res.send(resp);
+  });
+  res.status(200).send(resp);
   } catch (error) {
-    res.send(error);
+    console.error (error)
+    res.status(500).send(error);
   }
 }
 

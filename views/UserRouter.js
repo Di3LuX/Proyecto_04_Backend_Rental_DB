@@ -7,30 +7,21 @@ const AuthController = require("../controllers/AuthController");
 
 
 //Ver todos los usuarios
-router.get("/", authBearerMiddleware, isAdmin, AuthController.getUsers);
+router.get("/", authBearerMiddleware, isAdmin, AuthController.findAll);
 
 //Buscar usuario por ID
-router.get("/:id", authBearerMiddleware, isAdmin, AuthController.getUserId);
-
-//Buscar usuario por Email
-router.get("/email/:email", authBearerMiddleware, isAdmin, AuthController.getUserEmail);
+router.get("/:id", authBearerMiddleware, isAdmin, AuthController.findCurrentUser);
 
 //Registro Usuarios
-router.post("/", AuthController.registerUser);
+router.post("/register", AuthController.register);
 
 //Login Usuarios
-router.post("/login", AuthController.loginUser);
+router.post("/login", AuthController.login);
 
-//Modificar Password
-router.put("/newpassword", authBearerMiddleware, isAdmin, AuthController.updatePassword);
+//Modificar
+router.put("/newpassword", authBearerMiddleware, isAdmin, AuthController.modifyCurrentUser);
 
-//Borrar usuarios
-router.delete("/", authBearerMiddleware, isAdmin,  AuthController.deleteAll);
-
-//Borrar usuario mediante su id
-router.delete("/delete/:id",authBearerMiddleware, isAdmin, AuthController.deleteById);
-
-//Actualiza datos de usuarios en la DB
-router.put('/:id', authBearerMiddleware, isAdmin, AuthController.updateProfile);
+//Borrar usuario
+router.delete("/", authBearerMiddleware, isAdmin,  AuthController.deleteUser);
 
 module.exports = router;

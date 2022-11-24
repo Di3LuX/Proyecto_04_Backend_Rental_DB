@@ -20,10 +20,10 @@ const assertValidPasswordService = (pass) => {
   }
 };
 
-// Nos aseguramos que el email es unico
-const assertEmailIsUniqueService = async (email) => {
-  // Validamos el email
-  const existingMail = await models.articles.findAll({ email: email });
+// Nos aseguramos que el mail es unico
+const assertEmailIsUniqueService = async (mail) => {
+  // Validamos el mail
+  const existingMail = await models.articles.findAll({ mail: mail });
   if (existingMail) {
     throw new Error(
       "El Email que intentas introducir ya esta en el sistema"
@@ -31,14 +31,14 @@ const assertEmailIsUniqueService = async (email) => {
   }
 };
 
-// Nos aseguramos que el email es valido
+// Nos aseguramos que el mail es valido
 
-const assertEmailIsValid = (email) => {
-  // Validamos el email
+const assertEmailIsValid = (mail) => {
+  // Validamos el mail
   const emailRegex =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  // Devolvemos emailRegex.test(email);
-  const isValid = email.match(emailRegex);
+  // Devolvemos emailRegex.test(mail);
+  const isValid = mail.match(emailRegex);
   if (!isValid) {
     throw new Error("Email invalido");
   }
@@ -48,33 +48,31 @@ const createUserService = async (userBody) => {
   const hash = encryptPassword(userBody.password);
   userBody.password = hash;
   await models.user.create({
-    id_user: 24,
-    email: userBody.email,
     name: userBody.name,
-    surname: userBody.surname,
-    password: userBody.password,
-    document: userBody.document,
-    address: userBody.address,
+    username: userBody.username,
+    age: userBody.age,
+    mail: userBody.mail,
+    pass: userBody.pass,
   });
   console.log(userBody);
   return userBody;
 };
 
 // Encriptamos el pass
-const encryptPassword = (password) => {
+const encryptPassword = (pass) => {
   const hash = crypto
     .createHmac("sha512")
-    .update(password)
+    .update(pass)
     .digest("base64");
   return hash;
 };
 
-// Nos aseguramos que el email y el pass son validos
-const validUserPass = async (email, pass) => {
-  const userFound = await models.user.findOne({ email: email });
+// Nos aseguramos que el mail y el pass son validos
+const validUserPass = async (mail, pass) => {
+  const userFound = await models.user.findOne({ mail: mail });
   if (userFound) {
     const hash = encryptPassword(pass);
-    return hash === userFound.password;
+    return hash === userFound.pass;
   }
   return false;
 };
