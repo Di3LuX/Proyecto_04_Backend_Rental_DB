@@ -1,8 +1,8 @@
 
-const { models } = require("../models/index");
+const { User } = require("../models/index");
 const jsonwebtoken = require("jsonwebtoken");
-
-
+const bcrypt = require("bcrypt");
+const { authConfig } = require("../config/auth");
 const AuthController = {};
 
 // Registro de usuario
@@ -10,10 +10,11 @@ const AuthController = {};
 AuthController.register = (req, res) => {
 
   // Encriptamos la contraseña
-  let pass = bcrypt.hashSync(req.body.pass, Number.parseInt(authConfig.rounds));
+  let pass = bcrypt.hashSync(req.body.pass, 10);
 
   // Crear un usuario
-  user.create({
+  const userRegistred = 
+  User.create({
     name: req.body.name,
     username: req.body.username,
     age: req.body.age,
@@ -27,12 +28,13 @@ AuthController.register = (req, res) => {
     });
 
     res.json({
-      user: user,
-      token: token
+      // user: user,
+      // token: token,
+      userRegistred
     });
 
-  }).catch(err => {
-    res.status(500).json(err);
+  }).catch(error => {
+    res.status(500).json(error);
   });
 
 };
@@ -61,8 +63,8 @@ AuthController.login = (req, res) => {
         res.status(401).json({ msg: "Contraseña incorrecta" })
       }
     }
-  }).catch(err => {
-    res.status(500).json(err);
+  }).catch(error => {
+    res.status(500).json(error);
   })
 };
 
