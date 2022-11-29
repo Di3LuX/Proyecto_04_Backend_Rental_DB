@@ -1,4 +1,4 @@
-const user = require("../models/index");
+const {user} = require("../models/index");
 const authConfig = require("../config/auth");
 const jsonwebtoken = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -9,17 +9,20 @@ const AuthController = {};
 
 AuthController.register = (req, res) => {
   let password = bcrypt.hashSync(req.body.password, 10);
-  console.log(password)
+
+  
   user.create({
     name: req.body.name,
     username: req.body.username,
     age: req.body.age,
     mail: req.body.mail,
     password: password,
+    role_id: 2
 
   }).then(user => {
 
-    let token = jsonwebtoken.register({ user: user }, authConfig.secret, {
+
+    let token = jsonwebtoken.sign({ user: user }, authConfig.secret, {
       expiresIn: authConfig.expires
     });
 
@@ -29,6 +32,7 @@ AuthController.register = (req, res) => {
     });
 
   }).catch(error => {
+    console.log(error);
     res.status(500).json(error.message);
   });
 };
