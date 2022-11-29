@@ -1,6 +1,5 @@
-const { send } = require('express/lib/response');
-const { Order } = require("../models/index");
-const { User } = require("../models/index");
+const send = require('express/lib/response');
+const order = require("../models/index");
 
 const OrdersController = {};
 
@@ -10,7 +9,7 @@ OrdersController.placeNewOrder = (req, res) => {
 
   let body = req.body;
 
-  Order.create({
+  order.create({
     movieId: body.movieId,
     showId: body.showId,
     userId: body.userId,
@@ -37,7 +36,7 @@ OrdersController.getOrdersById = async (req, res) => {
     FROM movies INNER JOIN orders
     ON movies.id = orders.movieId INNER JOIN users
     ON users.id = orders.userId WHERE users.id = ${id};`;
-  let resultado = await Order.sequelize.query(consulta, { type: Order.sequelize.QueryTypes.SELECT });
+  let resultado = await order.sequelize.query(consulta, { type: order.sequelize.QueryTypes.SELECT });
   if (resultado) {
     res.send(resultado);
   }
@@ -51,7 +50,7 @@ OrdersController.allOrders = async (req, res) => {
     FROM movies INNER JOIN orders
     ON movies.id = orders.movieId INNER JOIN users
     ON users.id = orders.userId;`;
-  let resultado = await Order.sequelize.query(consulta, { type: Order.sequelize.QueryTypes.SELECT });
+  let resultado = await order.sequelize.query(consulta, { type: order.sequelize.QueryTypes.SELECT });
   if (resultado) {
     res.send(resultado);
   }
@@ -65,7 +64,7 @@ OrdersController.deleteOrderById = (req, res) => {
 
 
   try {
-    Order.destroy({
+    order.destroy({
       where: { id: id },
       truncate: false
     })
@@ -85,7 +84,7 @@ OrdersController.deleteOrderById = (req, res) => {
 OrdersController.deleteAll = (req, res) => {
   try {
 
-    Order.destroy({
+    order.destroy({
       where: {},
       truncate: false
     })

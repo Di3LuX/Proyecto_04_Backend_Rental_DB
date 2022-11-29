@@ -2,26 +2,22 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   
-  class Show extends Model {
+  class show extends Model {
 
     static associate(models) {
-
-      this.hasMany(models.Order, {
-        foreignKey: 'show_id'
-      });
-      this.hasMany(models.Genre, {
+      show.belongsTo(models.genre, {
         foreignKey: 'genre_id'
       });
     }
-  }
-  Show.init({
+  };
+  show.init({
     title: DataTypes.STRING,
     rate: DataTypes.FLOAT,
     synopsis: DataTypes.TEXT,
     adult: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Show',
+    modelName: 'show',
   });
-  return Show;
+  return show;
 };

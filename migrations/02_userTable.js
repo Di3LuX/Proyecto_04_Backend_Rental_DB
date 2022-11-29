@@ -3,7 +3,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -16,7 +16,6 @@ module.exports = {
       username: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
       },
       age: {
         type: Sequelize.INTEGER,
@@ -27,19 +26,17 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      pass: {
+      password: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      
       role_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'Roles',
-          key: 'id'
-        },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+          model: "roles",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,
@@ -52,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };

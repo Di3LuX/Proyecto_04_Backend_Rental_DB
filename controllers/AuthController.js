@@ -1,58 +1,51 @@
-
-const { User } = require("../models/index");
+const user = require("../models/index");
+const authConfig = require("../config/auth");
 const jsonwebtoken = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { authConfig } = require("../config/auth");
+
 const AuthController = {};
 
 // Registro de usuario
 
 AuthController.register = (req, res) => {
-
-  // Encriptamos la contraseña
-  let pass = bcrypt.hashSync(req.body.pass, 10);
-
-  // Crear un usuario
-  const userRegistred = 
-  User.create({
+  let password = bcrypt.hashSync(req.body.password, 10);
+  console.log(password)
+  user.create({
     name: req.body.name,
     username: req.body.username,
     age: req.body.age,
     mail: req.body.mail,
-    pass: pass
+    password: password,
+
   }).then(user => {
 
-    // Creamos el token
-    let token = jwt.sign({ user: user }, authConfig.secret, {
+    let token = jsonwebtoken.register({ user: user }, authConfig.secret, {
       expiresIn: authConfig.expires
     });
 
     res.json({
-      // user: user,
-      // token: token,
-      userRegistred
+      user: user,
+      token: token
     });
 
   }).catch(error => {
-    res.status(500).json(error);
+    res.status(500).json(error.message);
   });
-
 };
-
 // -----------------------------------------------------------------------------------
 
 // Login de usuario
 
 AuthController.login = (req, res) => {
-  let { mail, pass } = req.body;
+  let { mail, password } = req.body;
   user.findOne({
     where: { mail: mail }
   }).then(user => {
     if (!user) {
       res.status(404).json({ msg: "Usuario no encontrado" });
     } else {
-      if (bcrypt.compareSync(pass, user.pass)) {
-        let token = jwt.sign({ user: user }, authConfig.secret, {
+      if (bcrypt.compareSync(password, user.password)) {
+        let token = jsonwebtoken.sign({ user: user }, authConfig.secret, {
           expiresIn: authConfig.expires
         });
         res.json({
@@ -64,7 +57,7 @@ AuthController.login = (req, res) => {
       }
     }
   }).catch(error => {
-    res.status(500).json(error);
+    res.status(500).json(error.message);
   })
 };
 
@@ -85,8 +78,8 @@ AuthController.findAll = async (req, res) => {
 
 AuthController.findCurrentUser = async (req, res) => {
   const { authorization } = req.headers;
-  const [strategy, jwt] = authorization.split(" ");
-  const payload = jsonwebtoken.verify(jwt, process.env.JWT_SECRET);
+  const [ jsonwebtoken] = authorization.split(" ");
+  const payload = jsonwebtoken.verify(jsonwebtoken, process.env.JWT_SECRET);
   try {
     let id = payload.id_user;
     let resp = await models.user.findAll({
@@ -104,8 +97,8 @@ AuthController.findCurrentUser = async (req, res) => {
 
 AuthController.modifyCurrentUser = async (req, res) => {
   const { authorization } = req.headers;
-  const [strategy, jwt] = authorization.split(" ");
-  const payload = jsonwebtoken.verify(jwt, process.env.JWT_SECRET);
+  const [ jsonwebtoken] = authorization.split(" ");
+  const payload = jsonwebtoken.verify(jsonwebtoken, process.env.JWT_SECRET);
   if (req.body.mail !== payload.mail) {
     throw new Error("Solo puedes modificar tu cuenta")
     return
@@ -141,6 +134,5 @@ AuthController.deleteUser = async (req, res) => {
   } catch (error) {
     res.send(error)
   }
-}
-
+};
 module.exports = AuthController;

@@ -3,7 +3,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Movies', {
+    await queryInterface.createTable('movies', {
       id: {
         primaryKey: true,
         allowNull: false,
@@ -25,7 +25,7 @@ module.exports = {
       genre_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Genres',
+          model: 'genres',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -45,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Movies');
+    await queryInterface.dropTable('movies');
   }
 };

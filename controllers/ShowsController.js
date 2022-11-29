@@ -1,5 +1,5 @@
-const { send } = require('express/lib/response');
-const { Show } = require('../models/index');
+const send = require('express/lib/response');
+const show = require('../models/index');
 const { Op } = require("sequelize");
 const res = require('express/lib/response');
 
@@ -8,7 +8,7 @@ const ShowsController = {};
 
 // Endpoint para buscar todas las series:
 ShowsController.getAll = (req, res) => {
-  Show.findAll()
+  show.findAll()
     .then(data => {
       res.send(data)
     })
@@ -18,7 +18,7 @@ ShowsController.getAll = (req, res) => {
 ShowsController.getShowById = async (req, res) => {
   try {
     let { id } = req.params;
-    let resp = await Show.findOne({
+    let resp = await show.findOne({
       where: {
         id: id,
       },
@@ -34,7 +34,7 @@ ShowsController.getShowById = async (req, res) => {
 ShowsController.getShowByTitle = async (req, res) => {
   try {
     let { title } = req.params;
-    let resp = await Show.findOne({ 
+    let resp = await show.findOne({ 
     where: { 
       title: title,
     }
@@ -54,7 +54,7 @@ ShowsController.registerShow = (req, res) => {
   let adult = req.body.adult;
   let genres = req.body.genres;
 
-  Show.findAll({
+  show.findAll({
     where: {
 
       [Op.or]: [
@@ -71,7 +71,7 @@ ShowsController.registerShow = (req, res) => {
 
     if (datosRepetidos == 0) {
 
-      Show.create({
+      show.create({
         title: title,
         rate: rate,
         synopsis: synopsis,
@@ -99,7 +99,7 @@ ShowsController.deleteById = (req, res) => {
   let id = req.params.id;
 
   try {
-    Show.destroy({
+    show.destroy({
       where: { id: id },
       truncate: false
     })
@@ -118,7 +118,7 @@ ShowsController.deleteById = (req, res) => {
 ShowsController.deleteAll = (req, res) => {
   try {
 
-    Show.destroy({
+    show.destroy({
       where: {},
       truncate: false
     })

@@ -74,13 +74,18 @@ sequelize db:seed:all
 
 
 #### Register:
-POST - localhost:3000/user/register - { "name": "Nombre", "username": "NombreUsuario",  "age": "Edad", "mail": "E-Mail", "pass": "Contraseña", }
-
+POST - localhost:3000/user/register - {
+  "name": "prueba",
+  "username": "laprueba",
+  "age": "1",
+  "mail": "elmail@mail.es",
+  "pass": "aA111111"
+}
 #### Login:
-POST - localhost:3000/user/login - { "Email": "Email de usuario",  "pass": "Contraseña de usuario" }
-
-#### Home:
-GET - localhost:3000
+POST - localhost:3000/user/login - {
+  "mail": "elmail@mail.es",
+  "pass": "aA111111"
+}
 
 #### Peliculas
 
@@ -90,9 +95,13 @@ GET - localhost:3000/movies/:id
 
 GET - localhost:3000/movies/name/:title
 
-POST - localhost:3000/movies
-
-PUT - localhost:3000/movies:id
+POST - localhost:3000/movies - {
+        "title": titulo,
+        "rate": valoracion,
+        "synopsis": detalles,
+        "adult": para todos los publicos (t/f),
+        "genres": genero
+      }
 
 DELETE - localhost:3000/movies
 
@@ -120,35 +129,11 @@ DELETE - localhost:3000/shows:id
 
 GET - localhost:3000/genres
 
-GET - localhost:3000/genres/:id
-
-GET - localhost:3000/genres/name/:title
-
 POST - localhost:3000/genres
-
-PUT - localhost:3000/genres:id
 
 DELETE - localhost:3000/genres
 
 DELETE - localhost:3000/genres:id
-
-
-#### Usuarios
-
-GET - localhost:3000/users
-
-GET - localhost:3000/users/:id
-
-GET - localhost:3000/users/name/:title
-
-POST - localhost:3000/users
-
-PUT - localhost:3000/users:id
-
-DELETE - localhost:3000/users
-
-DELETE - localhost:3000/users:id
-
 
 -------------------------------------------------------------------------------------------------------
 

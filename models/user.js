@@ -2,26 +2,28 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   
-  class User extends Model {
+  class user extends Model {
 
     static associate(models) {
-      this.hasMany(models.Order, {
-        foreignKey: 'user_id'
-      });
-      this.hasMany(models.Role, {
-        foreignKey: 'role_id'
-      });
+      user.belongsToMany(models.role, { as: "roles", through: "user_role", foreignKey: "user_id" });
     }
-  }
-  User.init({
+  };
+  user.init({
     name: DataTypes.STRING,
     username: DataTypes.STRING,
     age: DataTypes.INTEGER,
     mail: DataTypes.STRING,
-    pass: DataTypes.STRING,
+    password: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'User',
-  });
-  return User;
+    modelName: 'user',
+  });  // Comprueba que el usuario es administrador
+
+  user.isAdmin = function(roles) {
+    let tmpArray = [];
+    roles.forEach(role => tmpArray.push(role.role));
+
+    return tmpArray.includes('admin');
+  }
+  return user;
 };

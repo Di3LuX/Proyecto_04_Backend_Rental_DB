@@ -2,22 +2,22 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   
-  class Order extends Model {
+  class order extends Model {
 
     static associate(models) {
-      this.belongsTo(models.Movie, {
+      this.hasMany(models.movie, {
         foreignKey: "movie_id"
       });
-      this.belongsTo(models.Show, {
+      this.hasMany(models.show, {
         foreignKey: "show_id"
       });
-      this.belongsTo(models.User, {
+      this.belongsTo(models.user, {
         foreignKey: 'user_id'
       });
     }
   }
 
-  Order.init({
+  order.init({
     movie_id: DataTypes.INTEGER,
     show_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     returnDate:DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'Order',
+    modelName: 'order',
   });
-  return Order;
+  return order;
 };

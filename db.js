@@ -3,7 +3,7 @@ const config = require('./config/config.json');
 const dotenv = require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.DB_DATABASE || "MovieRentalDB", 
+  process.env.DB_DATABASE || "movierentaldb", 
   process.env.DB_USERNAME || "root",
   process.env.DB_PASSWORD || "root",
   {

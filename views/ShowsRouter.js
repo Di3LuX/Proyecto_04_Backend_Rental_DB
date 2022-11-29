@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { authBearerMiddleware, isAdmin } = require("../middlewares/auth.middleware")
+const authBearerMiddleware = require("../middlewares/auth")
 
 const ShowsController = require("../controllers/ShowsController");
 
@@ -14,12 +14,12 @@ router.get("/id/:id", ShowsController.getShowById);
 router.get("/title/:title", ShowsController.getShowByTitle);
 
 //Endpoint para registrar nueva pelicula
-router.post("/", authBearerMiddleware, isAdmin, ShowsController.registerShow);
+router.post("/", authBearerMiddleware, ShowsController.registerShow);
 
 //Endpoint para borrar una pelicula
-router.delete("/:id", authBearerMiddleware, isAdmin, ShowsController.deleteById);
+router.delete("/:id", authBearerMiddleware, ShowsController.deleteById);
 
 //Endpoint para borrar todas las peliculas
-router.delete("/", authBearerMiddleware, isAdmin, ShowsController.deleteAll);
+router.delete("/", authBearerMiddleware, ShowsController.deleteAll);
 
 module.exports = router;

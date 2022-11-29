@@ -1,5 +1,5 @@
-const { send } = require('express/lib/response');
-const { Genre } = require('../models/index');
+const send = require('express/lib/response');
+const genre = require('../models/index');
 const { Op } = require("sequelize");
 
 
@@ -8,7 +8,7 @@ const GenreController = {};
 
 //Endpoint para buscar generos
 GenreController.getAll = (req, res) => {
-  Genre.findAll()
+  genre.findAll()
     .then(data => {
       res.send(data)
     })
@@ -19,7 +19,7 @@ GenreController.registerGenre = (req, res) => {
 
   let body = req.body;
 
-  Genre.create({
+  genre.create({
     title: body.title
   })
     .then(genre => {
@@ -39,7 +39,7 @@ GenreController.deleteGenre = (req, res) => {
   let id = req.params.id;
 
   try {
-    Genre.destroy({
+    genre.destroy({
       where: { id: id },
       truncate: false
     })
@@ -58,7 +58,7 @@ GenreController.deleteGenre = (req, res) => {
 GenreController.deleteAll = (req, res) => {
   try {
 
-    Genre.destroy({
+    genre.destroy({
       where: {},
       truncate: false
     })

@@ -1,13 +1,15 @@
-const { send } = require('express/lib/response');
-const { Movie } = require('../models/index');
+
+const send = require('express/lib/response');
+const movie = require('../models/index');
 const { Op } = require("sequelize");
+const res = require('express/lib/response');
 
 
 const MoviesController = {};
 
 // Endpoint para buscar todas las peliculas:
 MoviesController.getAll = (req, res) => {
-  Movie.findAll()
+  movie.findAll()
     .then(data => {
       res.send(data)
     })
@@ -17,7 +19,7 @@ MoviesController.getAll = (req, res) => {
 MoviesController.getMovieById = async (req, res) => {
   try {
     let { id } = req.params;
-    let resp = await Movie.findOne({
+    let resp = await movie.findOne({
       where: {
         id: id,
       },
@@ -33,7 +35,7 @@ MoviesController.getMovieById = async (req, res) => {
 MoviesController.getMovieByTitle = async (req, res) => {
   try {
     let { title } = req.params;
-    let resp = await Movie.findOne({ 
+    let resp = await movie.findOne({ 
     where: { 
       title: title,
     }
@@ -52,7 +54,7 @@ MoviesController.registerMovie = (req, res) => {
   let adult = req.body.adult;
   let genres = req.body.genres;
 
-  Movie.findAll({
+  movie.findAll({
     where: {
 
       [Op.or]: [
@@ -69,7 +71,7 @@ MoviesController.registerMovie = (req, res) => {
 
     if (datosRepetidos == 0) {
 
-      Movie.create({
+      movie.create({
         title: title,
         rate: rate,
         synopsis: synopsis,
@@ -97,7 +99,7 @@ MoviesController.deleteById = (req, res) => {
   let id = req.params.id;
 
   try {
-    Movie.destroy({
+    movie.destroy({
       where: { id: id },
       truncate: false
     })
@@ -116,7 +118,7 @@ MoviesController.deleteById = (req, res) => {
 MoviesController.deleteAll = (req, res) => {
   try {
 
-    Movie.destroy({
+    movie.destroy({
       where: {},
       truncate: false
     })

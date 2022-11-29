@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Movies', [
+    await queryInterface.bulkInsert('movies', [
       { "title": "Shin Chan", "rate": 10, "synopsis": "", "adult": true, genre_id: 1, "premiere": true, createdAt: new Date(), updatedAt: new Date() },
       { "title": "Predator", "rate": 8, "synopsis": "", "adult": true, genre_id: 5, "premiere": false, createdAt: new Date(), updatedAt: new Date() },
       { "title": "Alien", "rate": 7, "synopsis": "", "adult": true, genre_id: 5, "premiere": false, createdAt: new Date(), updatedAt: new Date() },
@@ -16,7 +16,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
 
-    await queryInterface.bulkDelete('Movies', null, {});
+    await queryInterface.bulkDelete('movies', null, {});
 
   }
 };
