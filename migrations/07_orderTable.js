@@ -10,26 +10,24 @@ module.exports = {
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      movie_id: {
-        allowNull: false,
-        references: {
-          model: 'movies',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        type: Sequelize.INTEGER
-      },
-      show_id: {
-        allowNull: false,
-        references: {
-          model: 'shows',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        type: Sequelize.INTEGER
-      },
+      // movie_id: {
+      //   references: {
+      //     model: 'movies',
+      //     key: 'id'
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'CASCADE',
+      //   type: Sequelize.INTEGER
+      // },
+      // show_id: {
+      //   references: {
+      //     model: 'shows',
+      //     key: 'id'
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'CASCADE',
+      //   type: Sequelize.INTEGER
+      // },
       user_id: {
         allowNull: false,
         references: {

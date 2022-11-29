@@ -1,5 +1,5 @@
 const send = require('express/lib/response');
-const order = require("../models/index");
+const {order} = require("../models/index");
 
 const OrdersController = {};
 

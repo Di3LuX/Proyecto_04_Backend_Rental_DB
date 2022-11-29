@@ -1,6 +1,6 @@
 
-const send = require('express/lib/response');
-const movie = require('../models/index');
+const {send} = require('express/lib/response');
+const { movie, sequelize } = require('../models/index');
 const { Op } = require("sequelize");
 const res = require('express/lib/response');
 
@@ -9,7 +9,7 @@ const MoviesController = {};
 
 // Endpoint para buscar todas las peliculas:
 MoviesController.getAll = (req, res) => {
-  movie.findAll()
+  sequelize.query('SELECT id, title, rate, synopsis, adult, createdAt, updatedAt, genre_id FROM movies AS movie')
     .then(data => {
       res.send(data)
     })

@@ -5,12 +5,12 @@ module.exports = (sequelize, DataTypes) => {
   class order extends Model {
 
     static associate(models) {
-      this.hasMany(models.movie, {
-        foreignKey: "movie_id"
-      });
-      this.hasMany(models.show, {
-        foreignKey: "show_id"
-      });
+      // this.hasMany(models.movie, {
+      //   foreignKey: "movie_id"
+      // });
+      // this.hasMany(models.show, {
+      //   foreignKey: "show_id"
+      // });
       this.belongsTo(models.user, {
         foreignKey: 'user_id'
       });

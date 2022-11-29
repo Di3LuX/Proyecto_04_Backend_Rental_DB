@@ -91,9 +91,9 @@ POST - localhost:3000/user/login - {
 
 GET - localhost:3000/movies
 
-GET - localhost:3000/movies/:id
+GET - localhost:3000/movies/id/"id"
 
-GET - localhost:3000/movies/name/:title
+GET - localhost:3000/movies/title/"title"
 
 POST - localhost:3000/movies - {
         "title": titulo,
@@ -107,16 +107,21 @@ DELETE - localhost:3000/movies
 
 DELETE - localhost:3000/movies:id
 
-
 #### Series
 
 GET - localhost:3000/shows
 
-GET - localhost:3000/shows/:id
+GET - localhost:3000/shows/id/"id"
 
-GET - localhost:3000/shows/name/:title
+GET - localhost:3000/shows/title/"title"
 
-POST - localhost:3000/shows
+POST - localhost:3000/shows - {
+        "title": titulo,
+        "rate": valoracion,
+        "synopsis": detalles,
+        "adult": para todos los publicos (t/f),
+        "genres": genero
+      }
 
 PUT - localhost:3000/shows:id
 
@@ -124,17 +129,6 @@ DELETE - localhost:3000/shows
 
 DELETE - localhost:3000/shows:id
 
-
-#### Genero
-
-GET - localhost:3000/genres
-
-POST - localhost:3000/genres
-
-DELETE - localhost:3000/genres
-
-DELETE - localhost:3000/genres:id
-
 -------------------------------------------------------------------------------------------------------
 
-Agradezco a Jose Marín y a David Ochando por la ayuda y los repositorios de información donados para este proyecto.
+Agradezco a Jose Marín y a Dani Tarazona por la ayuda y los repositorios de información donados para este proyecto.

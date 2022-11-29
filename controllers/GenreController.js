@@ -1,5 +1,5 @@
 const send = require('express/lib/response');
-const genre = require('../models/index');
+const {genre} = require('../models/index');
 const { Op } = require("sequelize");
 
 
